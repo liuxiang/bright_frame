@@ -28,12 +28,13 @@
 # 搭建初始,使用
 - Maven pom.xml初始化`dependencies`
 - tomcat部署`bright:war exploded`
+- 代码更新,刷新服务：`Build > Build Artifact > bright:war exploded`
 - 首页预览
     - 数据访问demo
-    - 一.webService接口访问(返回json)
+    - 一.API接口访问(返回json)
     - 二.动静态访问各位置页面差异
 
-![](http://7xnbs3.com1.z0.glb.clouddn.com/17-3-10/7456180-file_1489145685391_18024.png)
+![](http://7xnbs3.com1.z0.glb.clouddn.com/17-3-10/93450546-file_1489145987589_11b12.png)
 ![](http://7xnbs3.com1.z0.glb.clouddn.com/17-3-10/54366383-file_1489145789988_15fb7.png)
 
 # 框架借鉴
