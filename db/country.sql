@@ -29,5 +29,8 @@ CREATE TABLE `country` (
 -- ----------------------------
 -- Records of country
 -- ----------------------------
-INSERT INTO `country` VALUES ('1', '中国', 'code_1');
-INSERT INTO `country` VALUES ('2', '外国', 'code_2');
+INSERT INTO `country` (`id`, `countryname`, `countrycode`) VALUES ('1', '中国', 'code_1');
+INSERT INTO `country` (`id`, `countryname`, `countrycode`) VALUES ('2', '外国', 'code_2');
+INSERT INTO `country` (`id`, `countryname`, `countrycode`) VALUES ('3', '国3', 'code_3');
+INSERT INTO `country` (`id`, `countryname`, `countrycode`) VALUES ('4', '国4', 'code_4');
+INSERT INTO `country` (`id`, `countryname`, `countrycode`) VALUES ('5', '国5', 'code_5');
