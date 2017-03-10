@@ -8,7 +8,7 @@
     <artifactId>bright</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <description>智能楼宇</description>
+    <description>聪明框架</description>
 
     <properties>
         <!-- main version setting -->
