@@ -33,6 +33,9 @@
     - 一.webService接口访问(返回json)
     - 二.动静态访问各位置页面差异
 
+![](http://7xnbs3.com1.z0.glb.clouddn.com/17-3-10/7456180-file_1489145685391_18024.png)
+![](http://7xnbs3.com1.z0.glb.clouddn.com/17-3-10/54366383-file_1489145789988_15fb7.png)
+
 # 框架借鉴
 - [`ThinkGem / JeeSite`](https://git.oschina.net/thinkgem/jeesite)
 - [` 人人开源 / renren-security`](https://git.oschina.net/babaio/renren-security)
