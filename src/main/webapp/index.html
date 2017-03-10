@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>恭喜,项目正常启动!</h2>
+<div>
+    数据访问demo：<a href="./demo">http://localhost:8080/proname/demo</a>
+</div>
+<h3>一.webService接口访问(返回json):</h3>
+<div>
+    static:× tomcat:√ 【GET】[<a href="./API/monitor/report?pram=demo">./API/monitor/report?pram=demo</a>]
+    -需控制器controller路径
+    <div id="show_GET" style="border: solid;">请求中...</div>
+    <br><br>
+
+    static:× tomcat:√ 【POST】[./API/monitor/report] -需控制器controller路径
+    <div id="show_POST" style="border: solid;">请求中...</div>
+    <script>
+
+        fetch("./API/monitor/report?pram=demo").then(function (res) {
+            res.text().then(function(text){
+                document.querySelector('#show_GET').innerText = JSON.stringify(text);
+            })
+        }, function (e) {
+            document.querySelector('#show_GET').innerText = "Error submitting form:" + JSON.stringify(e);
+        });
+
+        fetch("./API/monitor/report", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "pram=demo"
+        }).then(function (res) {
+            res.text().then(function(text){
+                document.querySelector('#show_POST').innerText = JSON.stringify(text);
+            })
+        }, function (e) {
+            document.querySelector('#show_POST').innerText = "Error submitting form:" + JSON.stringify(e);
+        });
+
+    </script>
+</div>
+<h3>二.动静态访问各位置页面差异:</h3>
+<div>
+    static:√ tomcat:√ [<a href="./static/app/main.html">./static/app/main.html</a>]
+    <iframe scrolling="yes" frameborder="0" style="width: 100%;max-height: 70px;;border: solid;"
+            src="./static/app/main.html"></iframe>
+    <br><br>
+    static:√ tomcat:× [<a href="WEB-INF/views/app/main.html">WEB-INF/views/app/main.html</a>]
+    -文件夹WEB-INF下内容被tomcat保护,不可直接访问
+    <iframe scrolling="yes" frameborder="0" style="width: 100%;max-height: 70px;border: solid;"
+            src="WEB-INF/views/app/main.html"></iframe>
+    <br><br>
+    static:× tomcat:√ [<a href="app/controller2main.html">app/controller2main.html</a>] -需控制器controller路径(.html)
+    <iframe scrolling="yes" frameborder="0" style="width: 100%;max-height: 70px;border: solid;"
+            src="app/controller2main.html"></iframe>
+    <br><br>
+    static:× tomcat:√ [<a href="./demo">./demo</a>] -需控制器controller路径(.jsp)
+    <iframe scrolling="yes" frameborder="0" style="width: 100%;max-height: 70px;border: solid;"
+            src="./demo"></iframe>
+</div>
+</body>
+</html>
