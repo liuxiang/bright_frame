@@ -27,6 +27,7 @@
     
 # 搭建初始,使用
 - Maven pom.xml初始化`dependencies`
+- 数据库初始化`country.sql`,连接地址更新`config.properties`
 - tomcat部署`bright:war exploded`
 - 代码更新,刷新服务：`Build > Build Artifact > bright:war exploded`
 - 首页预览
