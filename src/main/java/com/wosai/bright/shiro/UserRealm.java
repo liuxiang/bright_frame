@@ -3,9 +3,14 @@ package com.wosai.bright.shiro;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 认证
@@ -43,18 +48,18 @@ public class UserRealm extends AuthorizingRealm {
 //		}
 //
 //		//用户权限列表
-//		Set<String> permsSet = new HashSet<String>();
+		Set<String> permsSet = new HashSet<String>();
 //		for(String perms : permsList){
 //			if(StringUtils.isBlank(perms)){
 //				continue;
 //			}
 //			permsSet.addAll(Arrays.asList(perms.trim().split(",")));
 //		}
-//
-//		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//		info.setStringPermissions(permsSet);
-//		return info;
-        return null;// TODO 待恢复
+        permsSet.add("Authority:method_1");
+
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+		info.setStringPermissions(permsSet);
+		return info;
     }
 
     /**
@@ -63,9 +68,9 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(
             AuthenticationToken token) throws AuthenticationException {
-//		String username = (String) token.getPrincipal();
-//        String password = new String((char[]) token.getCredentials());
-//
+		String username = (String) token.getPrincipal();
+        String password = new String((char[]) token.getCredentials());
+
 //        //查询用户信息
 //        SysUserEntity user = sysUserService.queryByUserName(username);
 //
@@ -83,10 +88,9 @@ public class UserRealm extends AuthorizingRealm {
 //        if(user.getStatus() == 0){
 //        	throw new LockedAccountException("账号已被锁定,请联系管理员");
 //        }
-//
-//        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, password, getName());
-//        return info;
-        return null;// TODO 待恢复
+
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(username, password, getName());
+        return info;
     }
 
 }

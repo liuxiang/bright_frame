@@ -31,7 +31,8 @@
 - tomcat部署`bright:war exploded`
 - 代码更新,刷新服务：`Build > Build Artifact > bright:war exploded`
 - 首页预览
-    - 数据访问demo
+    - 数据访问测试 demo
+    - 权限控制测试 home.html
     - 一.API接口访问(返回json)
     - 二.动静态访问各位置页面差异
 
@@ -55,6 +56,13 @@
     - [使用Mapper专用的MyBatis Generator插件](http://git.oschina.net/free/Mapper/blob/master/wiki/mapper3/7.UseMBG.md)
     - [在Spring4中使用通用Mapper](http://git.oschina.net/free/Mapper2/blob/master/wiki/mapper/4.Spring4.md)
     - [mybatis-generator界面工具 astarring/mybatis-generator-gui](https://github.com/astarring/mybatis-generator-gui)
+
+- 权限控制相关(shior)
+    - [Shiro学习笔记（2）——身份验证之Realm](http://blog.csdn.net/u010837612/article/details/46053249)
+    - [Shiro学习笔记（3）——授权（Authorization）](http://blog.csdn.net/u010837612/article/details/46126157)
+
+- 前后端分离相关
+    - [Angular中在前后端分离模式下实现权限控制 - 基于RBAC - 顽Shi的Blog](https://my.oschina.net/blogshi/blog/300595)
 
 # 作者信息
 - 作者博客：http://liuxiang.github.io
