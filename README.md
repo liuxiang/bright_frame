@@ -23,7 +23,7 @@
     - MyBatis Generator
 
 - 前端(从此项目中分离出来)`前后端分离`
-    - angular / Vue / React /jquery + Bootstrap
+    - angular / Vue + Element / React / jquery + Bootstrap
     
 # 搭建初始,使用
 - Maven pom.xml初始化`dependencies`
@@ -49,6 +49,7 @@
 - 其它
     - [`iBase4J / iBase4J`](https://git.oschina.net/iBase4J/iBase4J)
     - [`青苗 / SpringWind`](https://git.oschina.net/juapk/SpringWind)
+    - [baichengzhou/SpringMVC-Mybatis-Shiro-redis-0.2](https://github.com/baichengzhou/SpringMVC-Mybatis-Shiro-redis-0.2)
     
 # 查阅
 - MyBatis Generator相关

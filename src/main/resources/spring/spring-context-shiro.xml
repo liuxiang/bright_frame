@@ -51,10 +51,14 @@
                 /statics/**=anon
                 /index.html=anon
                 /=anon
-                /login.html=anon
-                /demo/testAnnotation/**=authc
-                /demo/logout = logout
                 /demo/**=anon
+                /login.html=anon
+
+                /shiroDemo/login = anon
+                /shiroDemo/logoutContl = anon
+                /shiroDemo/logout = logout
+                /shiroDemo/**=authc
+
                 /API/**=anon
                 /**=authc
             </value>

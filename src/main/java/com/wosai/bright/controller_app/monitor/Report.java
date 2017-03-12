@@ -1,4 +1,4 @@
-package com.wosai.bright.controller_web.monitor;
+package com.wosai.bright.controller_app.monitor;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;

@@ -3,34 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
 </head>
 <body>
-    <h1>this home page!</h1>
-    <a href="./"> < 回首页</a>
-    <br><br>
-    [<a href="./demo/testAnnotation/method_1">./demo/testAnnotation/method_1</a>]
-    <iframe scrolling="yes" frameborder="0" style="width: 100%;max-height: 70px;border: solid;"
-            src="./demo/testAnnotation/method_1"></iframe>
-    <br><br>
-    [<a href="./demo/testAnnotation/method_2">./demo/testAnnotation/method_2</a>] - 没有权限会将已经抛出前台,可以定向异常页或切面拦截定向登录页.
-    <iframe scrolling="yes" frameborder="0" style="width: 100%;max-height: 70px;border: solid;"
-            src="./demo/testAnnotation/method_2"></iframe>
-    <br><br>
+<h1>this home page!</h1>
+<a href="./"> < 回首页</a>
+<hr/>
+<h2>iframe方式(页面访问):</h2>
+√ [<a href="./shiroDemo/testAnnotation/method_1">./shiroDemo/testAnnotation/method_1</a>]
+<iframe scrolling="yes" frameborder="0" style="width: 100%;max-height: 70px;border: solid;"
+        src="./shiroDemo/testAnnotation/method_1"></iframe>
+<br><br>
+× [<a href="./shiroDemo/testAnnotation/method_2">./shiroDemo/testAnnotation/method_2</a>] - 没有权限会将已经抛出前台,可以定向异常页或切面拦截定向登录页.
+<iframe scrolling="yes" frameborder="0" style="width: 100%;max-height: 70px;border: solid;"
+        src="./shiroDemo/testAnnotation/method_2"></iframe>
+<br><br>
+<hr/>
 
-    <div>
-        权限控制使用shior框架.配置见spring-context-shiro.xml / UserRealm.java
-    </div>
-    <!--<div id="show_testAnnotation" style="border: solid;">请求中...</div>-->
-    <!--<script>-->
+<h2>异步ajax获取方式:</h2>
+√ ajax jQuery [<a href="./shiroDemo/testAnnotation/method_1">./shiroDemo/testAnnotation/method_1</a>]
+<div id="show_testAnnotation_jq" style="border: solid;">请求中...</div>
+<script>
 
-    <!--// 因fetch无cookie(即无sessionid),所以会跳转到登录页-->
-    <!--fetch("./demo/testAnnotation").then(function (res) {-->
-    <!--res.text().then(function(text){-->
-    <!--document.querySelector('#show_testAnnotation').innerText = JSON.stringify(text);-->
-    <!--})-->
-    <!--}, function (e) {-->
-    <!--document.querySelector('#show_testAnnotation').innerText = "Error submitting form:" + JSON.stringify(e);-->
-    <!--});-->
-    <!--</script>-->
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "./shiroDemo/testAnnotation/method_1",
+        "method": "GET",
+        "headers": {
+            "cache-control": "no-cache",
+            "postman-token": "a3c453c8-d56e-c411-b128-e543280bfbe8"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        document.querySelector('#show_testAnnotation_jq').innerText = JSON.stringify(response);
+    });
+</script>
+<br>
+
+× ajax fetch [<a href="./shiroDemo/testAnnotation/method_1">./shiroDemo/testAnnotation/method_1</a>] -
+因fetch无cookie(即无sessionid),所以会跳转到登录页
+<div id="show_testAnnotation" style="border: solid;">请求中...</div>
+<script>
+
+    // 因fetch无cookie(即无sessionid),所以会跳转到登录页
+    fetch("./shiroDemo/testAnnotation/method_1").then(function (res) {
+        res.text().then(function (text) {
+            document.querySelector('#show_testAnnotation').innerText = JSON.stringify(text);
+        })
+    }, function (e) {
+        document.querySelector('#show_testAnnotation').innerText = "Error submitting form:" + JSON.stringify(e);
+    });
+</script>
+<br>
+
+√ ajax fetch + cookie [<a href="./shiroDemo/testAnnotation/method_1">./shiroDemo/testAnnotation/method_1</a>] -
+因fetch无cookie(即无sessionid),所以会跳转到登录页
+<div id="show_testAnnotation_fetchCookie" style="border: solid;">请求中...</div>
+<script>
+
+    // 因fetch无cookie(即无sessionid),所以会跳转到登录页
+    fetch("./shiroDemo/testAnnotation/method_1", {credentials: 'include'}).then(function (res) {
+        res.text().then(function (text) {
+            document.querySelector('#show_testAnnotation_fetchCookie').innerText = JSON.stringify(text);
+        })
+    }, function (e) {
+        document.querySelector('#show_testAnnotation_fetchCookie').innerText = "Error submitting form:" + JSON.stringify(e);
+    });
+</script>
+<br>
+
+<hr/>
+<div>
+    权限控制使用shior框架.配置见spring-context-shiro.xml / UserRealm.java
+</div>
+
 </body>
 </html>
