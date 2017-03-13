@@ -23,6 +23,7 @@
 	<!-- `@RequestMapping`注解生效(servlet映射) -->
 	<context:component-scan base-package="com.wosai.bright.controller"/>
 	<context:component-scan base-package="com.wosai.bright.controller_web"/>
+	<context:component-scan base-package="com.wosai.bright.controller_app"/>
 
 	<bean id="stringHttpMessageConverter"
 		  class="org.springframework.http.converter.StringHttpMessageConverter"/>

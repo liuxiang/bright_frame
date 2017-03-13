@@ -4,3 +4,4 @@
     - webapp/WEB-INF/**/*.html
     
 - 统一前缀:`/模块名/**`
+- 会话技术:session

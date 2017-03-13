@@ -7,3 +7,4 @@
     - web app/hybrid app(浏览器环境的手机客户端)
 
 - 统一前缀:`/webService/模块名/**`
+- 会话技术:session
