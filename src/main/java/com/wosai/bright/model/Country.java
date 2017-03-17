@@ -24,7 +24,6 @@
 
 package com.wosai.bright.model;
 
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,11 +31,18 @@ import javax.persistence.Id;
 public class Country {
 
     /**
-     * 主键
+     * 主键_mysql
+     */
+//    @Id
+//    @Column(name = "Id")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Integer id;
+
+    /**
+     * 主键_oracle
      */
     @Id
-    @Column(name = "Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "select seq_country.nextval from dual")
     private Integer id;
 
     /**

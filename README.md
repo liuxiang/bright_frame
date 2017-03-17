@@ -39,6 +39,46 @@
 ![](http://7xnbs3.com1.z0.glb.clouddn.com/17-3-10/93450546-file_1489145987589_11b12.png)
 ![](http://7xnbs3.com1.z0.glb.clouddn.com/17-3-10/54366383-file_1489145789988_15fb7.png)
 
+# 项目使用的Oracle数据库
+- 更新驱动和配置`config.properties`
+```properties
+jdbc.driver=oracle.jdbc.driver.OracleDriver
+jdbc.url=jdbc:oracle:thin:@//192.168.3.198:1521/orcl
+```
+- 更新实体类,主键. (如:`Country`)
+```java
+/**
+ * 主键_mysql
+ */
+//    @Id
+//    @Column(name = "Id")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Integer id;
+
+/**
+ * 主键_oracle
+ */
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "select seq_country.nextval from dual")
+private Integer id;
+```
+- mybatis保证oracle序列先执行`ORDER=BEFORE`
+```xml
+<!-- @MyBatisDao注解的接口(Mapper<Entity>类支持) -->
+<bean id="mapperScannerConfigurer" class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="com.wosai.bright.mapper"/>
+    <!-- 3.2.2版本新特性，markerInterface可以起到mappers配置的作用，详细情况需要看Marker接口类 -->
+    <property name="markerInterface" value="com.wosai.bright.common.MyMapper"/>
+    <!-- 通用Mapper通过属性注入进行配置，默认不配置时会注册Mapper<T>接口-->
+    <property name="properties">
+        <value>
+            mappers=tk.mybatis.mapper.common.Mapper
+            ORDER=BEFORE
+        </value>
+    </property>
+</bean>
+```
+
 # 框架借鉴
 - [`ThinkGem / JeeSite`](https://git.oschina.net/thinkgem/jeesite)
 - [` 人人开源 / renren-security`](https://git.oschina.net/babaio/renren-security)

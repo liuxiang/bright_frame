@@ -36,17 +36,20 @@
 		
         <!-- 设置但JDBC类型为空时,某些驱动程序 要指定值,default:OTHER，插入空值时不需要指定类型 -->
         <setting name="jdbcTypeForNull" value="NULL"/>
-		
+
+		<!-- 设置但JDBC类型为空时,某些驱动程序 要指定值,default:OTHER -->
+		<!--<setting name="jdbcTypeForNull" value="DEFAULT"/>-->
+
 	</settings>
 	
-	<!-- 类型别名 -->
-	<typeAliases>
-		<typeAlias alias="Page" type="com.thinkgem.jeesite.common.persistence.Page" /><!--分页  -->
-	</typeAliases>
-	
+	 <!--类型别名 -->
+	<!--<typeAliases>-->
+		<!--<typeAlias alias="Page" type="com.thinkgem.jeesite.common.persistence.Page" />&lt;!&ndash;分页  &ndash;&gt;-->
+	<!--</typeAliases>-->
+
 	<!-- 插件配置 -->
-	<plugins>
-		<plugin interceptor="com.thinkgem.jeesite.common.persistence.interceptor.PaginationInterceptor" />
-    </plugins>
+	<!--<plugins>-->
+		<!--<plugin interceptor="com.thinkgem.jeesite.common.persistence.interceptor.PaginationInterceptor" />-->
+    <!--</plugins>-->
 	
 </configuration>

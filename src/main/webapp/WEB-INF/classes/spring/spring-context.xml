@@ -38,6 +38,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
         <property name="typeAliasesPackage" value="com.wosai.bright.model"/>
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
         <property name="plugins">
             <array>
                 <bean class="com.github.pagehelper.PageInterceptor">
@@ -65,6 +66,7 @@
         <property name="properties">
             <value>
                 mappers=tk.mybatis.mapper.common.Mapper
+                ORDER=BEFORE
             </value>
         </property>
     </bean>
