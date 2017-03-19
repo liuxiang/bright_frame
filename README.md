@@ -107,12 +107,12 @@ private Integer id;
 
 
 - 环境搭建
-    - [doc/【java脚手架搭建】容器 web.xml.md]()
-    - [doc/【java脚手架搭建】基础 spring-context.xml.md]()
-    - [doc/【java脚手架搭建】调度 spring-servlet.xml.md]()
-    - [doc/【java脚手架搭建】权限 spring-context-shiro.xml.md]()
-    - [doc/【java脚手架搭建】事务 spring-context-transaction.xml.md]()
-    - [doc/【java脚手架搭建】注解 spring-context-annotation.xml.md]()
+    - [doc/【java脚手架搭建】容器 web.xml.md](https://github.com/liuxiang/bright_frame/tree/master/doc)
+    - [doc/【java脚手架搭建】基础 spring-context.xml.md](https://github.com/liuxiang/bright_frame/tree/master/doc)
+    - [doc/【java脚手架搭建】调度 spring-servlet.xml.md](https://github.com/liuxiang/bright_frame/tree/master/doc)
+    - [doc/【java脚手架搭建】权限 spring-context-shiro.xml.md](https://github.com/liuxiang/bright_frame/tree/master/doc)
+    - [doc/【java脚手架搭建】事务 spring-context-transaction.xml.md](https://github.com/liuxiang/bright_frame/tree/master/doc)
+    - [doc/【java脚手架搭建】注解 spring-context-annotation.xml.md](https://github.com/liuxiang/bright_frame/tree/master/doc)
 
 - 问题处理
     - [doc/【java脚手架搭建】问题处理.md]()
