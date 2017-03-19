@@ -8,7 +8,7 @@ create table country
 ;
 -- Create/Recreate primary, unique and foreign key constraints
 alter table country
-  add constraint pk_id primary key (ID);
+  add constraint pk_country primary key (ID);
 
 -- init data
 insert into COUNTRY (id, countryname, countrycode)

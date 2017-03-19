@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by Administrator on 2017/3/9 0009.
  */
 @Controller
+@RequestMapping("/app")
 public class PageController {
 
-    @RequestMapping("app/{url}.html")
+    @RequestMapping("{url}.html")
     public String page_app(@PathVariable("url") String url) {
         return "app/" + url + ".html";
     }

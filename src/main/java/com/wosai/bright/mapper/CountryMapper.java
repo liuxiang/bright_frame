@@ -24,7 +24,6 @@
 
 package com.wosai.bright.mapper;
 
-
 import com.wosai.bright.common.MyMapper;
 import com.wosai.bright.model.Country;
 import org.apache.ibatis.annotations.Param;

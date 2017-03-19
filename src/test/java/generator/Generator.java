@@ -43,9 +43,13 @@ public class Generator {
         boolean overwrite = true;
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(
-                Generator.class.getResourceAsStream("/generator/generatorConfigJava.xml"));
+                Generator.class.getResourceAsStream("/generator/generatorConfigJava_oracle.xml"));
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);
         MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
         myBatisGenerator.generate(null);
     }
 }
+
+/**
+ * 生成oracle,数据表需要简单加工:替换model内文件中 用户名`C##WOSAI.`为空``
+ */
