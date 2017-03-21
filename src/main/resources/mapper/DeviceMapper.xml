@@ -9,7 +9,7 @@
     <result column="MODEL_CODE" property="modelCode" jdbcType="VARCHAR" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="POSITION" property="position" jdbcType="VARCHAR" />
-    <result column="DEVICE_ID" property="deviceId" jdbcType="DECIMAL" />
+    <result column="CAMERA_DEVICE_ID" property="cameraDeviceId" jdbcType="DECIMAL" />
     <result column="IP" property="ip" jdbcType="VARCHAR" />
     <result column="MENU_ID" property="menuId" jdbcType="DECIMAL" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />

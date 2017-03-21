@@ -5,7 +5,7 @@ create table device
   model_code      varchar2(32),
   name            varchar2(32),
   position        varchar2(32),
-  device_id       number,
+  camera_device_id       number,
   ip              varchar2(32),
   menu_id         number,
   create_time     date

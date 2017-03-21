@@ -35,6 +35,7 @@ import java.util.List;
  */
 public abstract class BaseService<T> implements IService<T> {
 
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     protected Mapper<T> mapper;
 

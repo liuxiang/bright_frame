@@ -21,16 +21,16 @@
 <hr/>
 <h3>一.API接口访问(返回json)：</h3>
 <div>
-    static:× tomcat:√ 【GET】[<a href="./API/monitor/report?pram=demo">./API/monitor/report?pram=demo</a>]
+    static:× tomcat:√ 【GET】[<a href="./API/demo/monitor/report?pram=demo">./API/demo/monitor/report?pram=demo</a>]
     -需控制器controller路径
     <div id="show_GET" style="border: solid;">请求中...</div>
     <br><br>
 
-    static:× tomcat:√ 【POST】[./API/monitor/report] -需控制器controller路径
+    static:× tomcat:√ 【POST】[./API/demo/monitor/report] -需控制器controller路径
     <div id="show_POST" style="border: solid;">请求中...</div>
     <script>
 
-        fetch("./API/monitor/report?pram=demo").then(function (res) {
+        fetch("./API/demo/monitor/report?pram=demo").then(function (res) {
             res.text().then(function(text){
                 document.querySelector('#show_GET').innerText = JSON.stringify(text);
             })
@@ -38,7 +38,7 @@
             document.querySelector('#show_GET').innerText = "Error submitting form:" + JSON.stringify(e);
         });
 
-        fetch("./API/monitor/report", {
+        fetch("./API/demo/monitor/report", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"

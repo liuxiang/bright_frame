@@ -22,8 +22,8 @@
 		<!-- 消息转换(常用于:返回字符串,对象转json) -->
 		<mvc:message-converters>
 			<ref bean="stringHttpMessageConverter"/>
-			<ref bean="marshallingHttpMessageConverter"/>
 			<ref bean="mappingJackson2HttpMessageConverter"/>
+			<ref bean="marshallingHttpMessageConverter"/>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 

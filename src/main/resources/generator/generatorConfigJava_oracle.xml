@@ -46,7 +46,7 @@
     <!--connectionURL="jdbc:oracle:thin:@//192.168.3.198:1521/orcl"-->
     <!--connectionURL="jdbc:oracle:thin:@//localhost:1521/orcl.microdone.cn"-->
     <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-                    connectionURL="jdbc:oracle:thin:@//localhost:1521/orcl.microdone.cn"
+                    connectionURL="jdbc:oracle:thin:@//192.168.3.198:1521/orcl"
                     userId="C##wosai"
                     password="ws2014">
     </jdbcConnection>

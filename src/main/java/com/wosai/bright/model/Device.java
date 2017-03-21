@@ -19,8 +19,8 @@ public class Device {
     @Column(name = "POSITION")
     private String position;
 
-    @Column(name = "DEVICE_ID")
-    private Short deviceId;
+    @Column(name = "CAMERA_DEVICE_ID")
+    private Short cameraDeviceId;
 
     @Column(name = "IP")
     private String ip;
@@ -88,17 +88,17 @@ public class Device {
     }
 
     /**
-     * @return DEVICE_ID
+     * @return CAMERA_DEVICE_ID
      */
-    public Short getDeviceId() {
-        return deviceId;
+    public Short getCameraDeviceId() {
+        return cameraDeviceId;
     }
 
     /**
-     * @param deviceId
+     * @param cameraDeviceId
      */
-    public void setDeviceId(Short deviceId) {
-        this.deviceId = deviceId;
+    public void setCameraDeviceId(Short cameraDeviceId) {
+        this.cameraDeviceId = cameraDeviceId;
     }
 
     /**

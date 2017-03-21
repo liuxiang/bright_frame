@@ -36,7 +36,8 @@ public class SysConfigController {
 //    private IService iService;
 
     @RequestMapping(method = RequestMethod.GET, value = {"sysConfig"})
-    public @ResponseBody List sysConfig(HttpServletRequest request, HttpServletResponse response) {
+    @ResponseBody
+    public List sysConfig(HttpServletRequest request, HttpServletResponse response) {
         List<SysConfig> sysConfigList = sysConfigService.selectByExample(new Example(SysConfig.class));
         return sysConfigList;
     }
