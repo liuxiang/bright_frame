@@ -8,7 +8,8 @@ create table device
   camera_device_id       number,
   ip              varchar2(32),
   menu_id         number,
-  create_time     date
+  create_time     date,
+  expire_time     date
 )
 ;
 
@@ -224,6 +225,8 @@ create table layer_icon
   position_y            number,
   width                 number,
   height                number,
+  icon_src              varchar2(255),
+  function_type        number,
   device_id             number,
   device_property_key   varchar2(255),
   create_time           date
@@ -246,7 +249,7 @@ create table layer_icon_status
 (
   id            number,
   icon_id       number,
-  icon_src      varchar2(32),
+  icon_src      varchar2(255),
   target_value  varchar2(255),
   upper_limit   number,
   lower_limit   number
@@ -289,3 +292,77 @@ create sequence seq_layer_function
 start with 201
 increment by 1
 cache 20;
+
+
+-- Create table
+create table layer_iconlib
+(
+  id                    number,
+  class_id             number,
+  icon_src             varchar2(255),
+)
+;
+
+-- Create/Recreate primary, unique and foreign key constraints
+alter table layer_iconlib
+  add constraint pk_layer_iconlib primary key (ID);
+
+-- Create sequence
+create sequence seq_layer_iconlib
+start with 201
+increment by 1
+cache 20;
+
+
+-- Create table
+create table layer_iconlib_class
+(
+  id                    number,
+  name                  varchar2(32),
+)
+;
+
+-- Create/Recreate primary, unique and foreign key constraints
+alter table layer_iconlib_class
+  add constraint pk_layer_iconlib_class primary key (ID);
+
+-- Create sequence
+create sequence seq_layer_iconlib_class
+start with 201
+increment by 1
+cache 20;
+
+
+-- Add/modify columns
+alter table DEVICE add ucode varchar2(64);
+
+-- Add/modify columns
+alter table DEVICE_WARNING add update_time date;
+
+
+-- Create table
+create table DEVICE_WARNING_LEVER
+(
+  id      number,
+  menu_id number,
+  lever   number
+);
+-- Create/Recreate primary, unique and foreign key constraints
+alter table DEVICE_WARNING_LEVER
+  add constraint PK_DEVICE_WARNING_LEVER primary key (ID);
+
+-- Create sequence
+create sequence seq_device_warning_lever
+start with 201
+increment by 1
+cache 20;
+
+-- Add/modify columns
+alter table DEVICE_WARNING add warning_sum number;
+
+
+-- Add/modify columns
+alter table DEVICE_REPAIR rename column useri_id to USER_ID;
+
+-- Add/modify columns
+alter table LAYER modify background VARCHAR2(255);

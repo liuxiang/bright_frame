@@ -7,10 +7,11 @@
     -->
     <id column="ID" property="id" jdbcType="DECIMAL" />
     <result column="LAYER_ID" property="layerId" jdbcType="DECIMAL" />
-    <result column="POSITION_X" property="positionX" jdbcType="DECIMAL" />
-    <result column="POSITION_Y" property="positionY" jdbcType="DECIMAL" />
+    <result column="POSITION_X" property="positionX" jdbcType="VARCHAR" />
+    <result column="POSITION_Y" property="positionY" jdbcType="VARCHAR" />
     <result column="TEXT" property="text" jdbcType="VARCHAR" />
     <result column="BACK_COLOR" property="backColor" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="EXPIRE_TIME" property="expireTime" jdbcType="TIMESTAMP" />
   </resultMap>
 </mapper>

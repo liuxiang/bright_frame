@@ -14,10 +14,10 @@ public class LayerText {
     private Short layerId;
 
     @Column(name = "POSITION_X")
-    private Short positionX;
+    private String positionX;
 
     @Column(name = "POSITION_Y")
-    private Short positionY;
+    private String positionY;
 
     @Column(name = "TEXT")
     private String text;
@@ -27,6 +27,9 @@ public class LayerText {
 
     @Column(name = "CREATE_TIME")
     private Date createTime;
+
+    @Column(name = "EXPIRE_TIME")
+    private Date expireTime;
 
     /**
      * @return ID
@@ -59,28 +62,28 @@ public class LayerText {
     /**
      * @return POSITION_X
      */
-    public Short getPositionX() {
+    public String getPositionX() {
         return positionX;
     }
 
     /**
      * @param positionX
      */
-    public void setPositionX(Short positionX) {
+    public void setPositionX(String positionX) {
         this.positionX = positionX;
     }
 
     /**
      * @return POSITION_Y
      */
-    public Short getPositionY() {
+    public String getPositionY() {
         return positionY;
     }
 
     /**
      * @param positionY
      */
-    public void setPositionY(Short positionY) {
+    public void setPositionY(String positionY) {
         this.positionY = positionY;
     }
 
@@ -124,5 +127,19 @@ public class LayerText {
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    /**
+     * @return EXPIRE_TIME
+     */
+    public Date getExpireTime() {
+        return expireTime;
+    }
+
+    /**
+     * @param expireTime
+     */
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
     }
 }

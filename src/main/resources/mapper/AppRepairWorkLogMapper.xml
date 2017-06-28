@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wosai.bright.mapper.AppRepairWorkLogMapper">
+    <resultMap id="BaseResultMap" type="com.wosai.bright.model.AppRepairWorkLog">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" property="id" jdbcType="DECIMAL"/>
+        <result column="WORK_CODE" property="workCode" jdbcType="VARCHAR"/>
+        <result column="WORK_STATUS" property="workStatus" jdbcType="DECIMAL"/>
+        <result column="WORK_HANDLE_USER_ID" property="workHandleUserId" jdbcType="DECIMAL"/>
+        <result column="OPERATOR_ID" property="operatorId" jdbcType="DECIMAL"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+</mapper>

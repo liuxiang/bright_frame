@@ -16,5 +16,93 @@
     <result column="MENU_ID" property="menuId" jdbcType="DECIMAL" />
     <result column="LEVER" property="lever" jdbcType="DECIMAL" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="WARNING_SUM" property="warningSum" jdbcType="DECIMAL" />
   </resultMap>
+
+  <resultMap id="MyBaseResultMap" type="map" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="RULE_ID" property="ruleId" jdbcType="DECIMAL" />
+    <result column="RULE_SCRIPT_ID" property="ruleScriptId" jdbcType="DECIMAL" />
+    <result column="DEVICE_ID" property="deviceId" jdbcType="DECIMAL" />
+    <result column="DEVICE_PROPERTY_KEY" property="devicePropertyKey" jdbcType="VARCHAR" />
+    <result column="VALUE" property="value" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="MENU_ID" property="menuId" jdbcType="DECIMAL" />
+    <result column="LEVER" property="lever" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="WARNING_SUM" property="warningSum" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="userName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findDeviceWarningLog" resultMap="MyBaseResultMap">
+    select dw.* , d.name , d.position ,u.name as userName
+    from device d ,DEVICE_WARNING dw
+    LEFT JOIN sys_user u ON dw.USER_ID = u.ID
+    <where>
+      dw.device_id = d.id
+      <if test="status != null">
+        and dw.status = #{status}
+      </if>
+      <if test="deviceName != null">
+        and d.name like CONCAT(CONCAT('%', #{deviceName}), '%')
+      </if>
+      <if test="devicePropertyKey != null">
+        and dw.device_property_key like CONCAT(CONCAT('%', #{devicePropertyKey}), '%')
+      </if>
+      <if test="position != null">
+        and d.POSITION like CONCAT(CONCAT('%', #{position}), '%')
+      </if>
+      <if test="userId != null">
+        and dw.user_id = #{userId}
+      </if>
+      <if test="beginDate != null">
+         and dw.create_time <![CDATA[>=]]> to_date(#{beginDate},'yyyy-MM-dd')
+      </if>
+      <if test="endDate != null">
+         and dw.create_time <![CDATA[<=]]> to_date(#{endDate},'yyyy-MM-dd')
+      </if>
+      <if test="lever != null">
+        and dw.lever = #{lever}
+      </if>
+      <if test="userName != null">
+        and u.name like CONCAT(CONCAT('%', #{userName}), '%')
+      </if>
+      ORDER BY dw.create_time DESC
+    </where>
+  </select>
+
+  <select id="getDeviceWarningLateLy" resultMap="BaseResultMap">
+    select dw.*
+    from DEVICE_WARNING dw
+    <where>
+      <if test="deviceId != null">
+        and dw.device_id = #{deviceId}
+      </if>
+      <if test="ruleId != null">
+        AND dw.rule_id = #{ruleId}
+      </if>
+        ORDER BY dw.update_time desc
+    </where>
+  </select>
+
+  <select id="getOffLineDeviceWarningLately" resultMap="BaseResultMap">
+    select dw.*
+    from DEVICE_WARNING dw
+    <where>
+      <if test="_parameter != null">
+        and dw.device_id = #{_parameter}
+      </if>
+      AND dw.status = 3
+      ORDER BY dw.update_time desc
+    </where>
+  </select>
+
 </mapper>

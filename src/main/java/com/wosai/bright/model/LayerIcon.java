@@ -2,6 +2,7 @@ package com.wosai.bright.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "LAYER_ICON")
 public class LayerIcon {
@@ -14,10 +15,10 @@ public class LayerIcon {
     private Short layerId;
 
     @Column(name = "POSITION_X")
-    private Short positionX;
+    private String positionX;
 
     @Column(name = "POSITION_Y")
-    private Short positionY;
+    private String positionY;
 
     @Column(name = "WIDTH")
     private Short width;
@@ -33,6 +34,37 @@ public class LayerIcon {
 
     @Column(name = "CREATE_TIME")
     private Date createTime;
+
+    @Column(name = "ICON_SRC")
+    private String iconSrc;
+
+    @Column(name = "FUNCTION_TYPE")
+    private Short functionType;
+
+    @Column(name = "EXPIRE_TIME")
+    private Date expireTime;
+
+    @Transient
+    private List iconStatus_target;
+
+    @Transient
+    private List iconStatus_limit;
+
+    public List getIconStatus_target() {
+        return iconStatus_target;
+    }
+
+    public void setIconStatus_target(List iconStatus_target) {
+        this.iconStatus_target = iconStatus_target;
+    }
+
+    public List getIconStatus_limit() {
+        return iconStatus_limit;
+    }
+
+    public void setIconStatus_limit(List iconStatus_limit) {
+        this.iconStatus_limit = iconStatus_limit;
+    }
 
     /**
      * @return ID
@@ -65,28 +97,28 @@ public class LayerIcon {
     /**
      * @return POSITION_X
      */
-    public Short getPositionX() {
+    public String getPositionX() {
         return positionX;
     }
 
     /**
      * @param positionX
      */
-    public void setPositionX(Short positionX) {
+    public void setPositionX(String positionX) {
         this.positionX = positionX;
     }
 
     /**
      * @return POSITION_Y
      */
-    public Short getPositionY() {
+    public String getPositionY() {
         return positionY;
     }
 
     /**
      * @param positionY
      */
-    public void setPositionY(Short positionY) {
+    public void setPositionY(String positionY) {
         this.positionY = positionY;
     }
 
@@ -158,5 +190,47 @@ public class LayerIcon {
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    /**
+     * @return ICON_SRC
+     */
+    public String getIconSrc() {
+        return iconSrc;
+    }
+
+    /**
+     * @param iconSrc
+     */
+    public void setIconSrc(String iconSrc) {
+        this.iconSrc = iconSrc;
+    }
+
+    /**
+     * @return FUNCTION_TYPE
+     */
+    public Short getFunctionType() {
+        return functionType;
+    }
+
+    /**
+     * @param functionType
+     */
+    public void setFunctionType(Short functionType) {
+        this.functionType = functionType;
+    }
+
+    /**
+     * @return EXPIRE_TIME
+     */
+    public Date getExpireTime() {
+        return expireTime;
+    }
+
+    /**
+     * @param expireTime
+     */
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
     }
 }

@@ -1,6 +1,7 @@
 package com.wosai.bright.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Table(name = "LAYER_ICON_STATUS")
 public class LayerIconStatus {
@@ -23,6 +24,12 @@ public class LayerIconStatus {
 
     @Column(name = "LOWER_LIMIT")
     private Short lowerLimit;
+
+    @Column(name = "CREATE_TIME")
+    private Date createTime;
+
+    @Column(name = "EXPIRE_TIME")
+    private Date expireTime;
 
     /**
      * @return ID
@@ -106,5 +113,33 @@ public class LayerIconStatus {
      */
     public void setLowerLimit(Short lowerLimit) {
         this.lowerLimit = lowerLimit;
+    }
+
+    /**
+     * @return CREATE_TIME
+     */
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * @param createTime
+     */
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    /**
+     * @return EXPIRE_TIME
+     */
+    public Date getExpireTime() {
+        return expireTime;
+    }
+
+    /**
+     * @param expireTime
+     */
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
     }
 }

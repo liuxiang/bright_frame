@@ -7,9 +7,52 @@
     -->
     <id column="ID" property="id" jdbcType="DECIMAL" />
     <result column="DEVICE_ID" property="deviceId" jdbcType="DECIMAL" />
-    <result column="USERI_ID" property="useriId" jdbcType="DECIMAL" />
+    <result column="USER_ID" property="userId" jdbcType="DECIMAL" />
     <result column="STATUS" property="status" jdbcType="DECIMAL" />
     <result column="REMARK" property="remark" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <select id="findDeviceRepair" resultMap="BaseResultMap">
+    select r.*,d.name as deviceName,d.model_code as modelCode,d.position,u.name as userName,m.name as menuName
+    from device_repair r
+    LEFT JOIN DEVICE d ON r.device_id = d.id
+    LEFT  JOIN SYS_USER u ON r.user_id = u.id
+    LEFT  JOIN SYS_MENU m ON d.menu_id = m.id
+    <where>
+      1 = 1
+      <if test="deviceName != null">
+        and d.NAME like CONCAT(CONCAT('%', #{deviceName}), '%')
+      </if>
+      <if test="modelCode != null">
+        AND d.model_code like CONCAT(CONCAT('%', #{modelCode}), '%')
+      </if>
+      <if test="menuId != null">
+        AND m.id = #{menuId}
+      </if>
+      <if test="userName != null">
+        AND u.NAME like CONCAT(CONCAT('%', #{userName}), '%')
+      </if>
+      <if test="status != null">
+        AND r.status = #{status}
+      </if>
+      <if test="beginTime != null">
+        AND r.create_time <![CDATA[>=]]> to_date(#{beginTime},'yyyy-MM-dd')
+      </if>
+      <if test="endTime != null">
+        AND r.create_time <![CDATA[<=]]> to_date(#{endTime},'yyyy-MM-dd')+1
+      </if>
+      ORDER BY r.create_time DESC
+    </where>
+  </select>
+  <select id ="getDeviceRepair" resultType="DeviceRepair">
+    select * from device_repair d
+    <where>
+      <if test="deviceId != null">
+        AND d.device_id = #{_parameter}
+      </if>
+      <if test="status != null">
+        AND d.status = #{status}
+      </if>
+    </where>
+  </select>
 </mapper>

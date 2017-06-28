@@ -11,4 +11,42 @@
     <result column="CONTENT" property="content" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
+
+  <resultMap id="MyBaseResultMap" type="map" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="OPERATING_CODE" property="operatingCode" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="DECIMAL" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findSysOperatingLog" resultMap="MyBaseResultMap">
+    select l.*,u.nickname
+    from SYS_OPERATING_LOG l , SYS_USER u
+    <where>
+      1 = 1
+      AND l.user_id = u.id
+      <if test="userName != null">
+        AND u.nickname LIKE CONCAT(CONCAT('%', #{userName}), '%')
+      </if>
+      <if test="operatingCode != null">
+        AND l.operating_code LIKE CONCAT(CONCAT('%', #{operatingCode}), '%')
+      </if>
+      <if test="content != null">
+        AND l.content LIKE CONCAT(CONCAT('%', #{content}), '%')
+      </if>
+      <if test="beginDate != null">
+        and l.create_time <![CDATA[>=]]> to_date(#{beginDate},'yyyy-MM-dd')
+      </if>
+      <if test="endDate != null">
+        and l.create_time <![CDATA[<=]]> to_date(#{endDate},'yyyy-MM-dd')
+      </if>
+      ORDER BY l.create_time DESC
+    </where>
+  </select>
+
 </mapper>

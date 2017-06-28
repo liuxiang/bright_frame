@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
 </head>
 <body>
 <h2>恭喜,项目正常启动!</h2>
@@ -17,7 +18,86 @@
     &emsp;&emsp;<a href="./shiroDemo/logoutContl">退出登录(./shiroDemo/logoutContl)</a>
     &emsp;&emsp;<a href="./shiroDemo/logout">shiro退出登录(./shiroDemo/logout)</a>
 </div>
+<br>
+<div>
+    ajax登录,观察cookie更新:
+    <input type="submit" onclick="ajaxLogin()" value="Ajax登录"/>
+    <input type="submit" onclick="ajaxLogin_Cross()" value="Ajax登录_Cross(not cookie)"/>
+    <input type="submit" onclick="ajaxLogin_Cross_withCredentials()" value="Ajax登录_Cross[withCredentials](Get the cookie)"/>
+    <script>
+        function ajaxLogin(){
+            var form = new FormData();
+            form.append("account", "123456");
+            form.append("password", "123456");
 
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "./web/login",
+                "method": "POST",
+                "headers": {
+                    "cache-control": "no-cache",
+                    "postman-token": "b7cf0591-9d9e-635a-0674-5ea103428db7"
+                },
+                "processData": false,
+                "contentType": false,
+                "mimeType": "multipart/form-data",
+                "data": form
+            }
+
+            $.ajax(settings).done(function (response) {
+                alert(response);
+            });
+        }
+
+        function ajaxLogin_Cross(){
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://localhost:8080/web/login",
+                "method": "POST",
+                "headers": {
+                    "content-type": "application/x-www-form-urlencoded"
+                    // "cache-control": "no-cache", // Access-Control-Allow-Headers 不允许请求头域高速缓存控制
+                    // "postman-token": "a278d63b-f0aa-c70b-406f-63771523afa6" // Access-Control-Allow-Headers 不允许在prelight响应中使用邮递员令牌。
+                },
+                "data": {
+                    "account": "123456",
+                    "password": "123456"
+                }
+            }
+
+            $.ajax(settings).done(function (response) {
+                alert(response);
+            });
+        }
+
+        function ajaxLogin_Cross_withCredentials(){
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://localhost:8080/web/login",
+                "method": "POST",
+                "headers": {
+                    "content-type": "application/x-www-form-urlencoded"
+                },
+                xhrFields:{withCredentials: true},
+                "data": {
+                    "account": "123456",
+                    "password": "123456"
+                }
+            }
+
+            $.ajax(settings).done(function (response) {
+                alert(response);
+            });
+        }
+    </script>
+</div>
+<br>
+<div>
+    WebSocket测试：<a href="./index_websocketClient.html">http://localhost:8080/index_websocketClient.html</a>
+</div>
 <hr/>
 <h3>一.API接口访问(返回json)：</h3>
 <div>

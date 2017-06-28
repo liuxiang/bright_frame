@@ -8,5 +8,47 @@
     <id column="ID" property="id" jdbcType="DECIMAL" />
     <result column="USER_ID" property="userId" jdbcType="DECIMAL" />
     <result column="MENU_ID" property="menuId" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
   </resultMap>
+
+  <!--<select id="selectByUserMenuModel" resultMap="BaseResultMap">-->
+  <select id="selectByUserMenuModel" resultType="map">
+    select m.id,parent_id,name,url,perms,type,icon,order_num
+    from sys_user_menu um,sys_menu m
+    <where>
+      um.menu_id = m.id
+      <if test="userId != null">
+        and um.user_id = #{userId}
+      </if>
+    </where>
+  </select>
+
+  <select id="findSysUserMenu" resultMap="BaseResultMap">
+    select um.*
+    from sys_user_menu um
+    <where>
+      1 = 1
+      <if test="userId != null">
+        AND um.user_id = #{userId}
+      </if>
+      <if test="menuId != null">
+        AND um.menu_id in(select m.id from sys_menu m where ((m.type = 1 AND m.id = #{menuId} )OR (m.type = 2 AND m.PARENT_ID = #{menuId})))
+      </if>
+    </where>
+  </select>
+
+  <select id="getSysUserMenu" resultMap="BaseResultMap">
+    select um.*
+    from sys_user_menu um
+    <where>
+      1 = 1
+      <if test="userId != null">
+        AND um.user_id = #{userId}
+      </if>
+      <if test="menuId != null">
+        AND um.menu_id = #{menuId}
+      </if>
+    </where>
+  </select>
+
 </mapper>

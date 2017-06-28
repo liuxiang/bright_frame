@@ -2,14 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-     	 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-		 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 扫描上下文(激活注解) -->
     <context:component-scan base-package="com.wosai.bright.controller"></context:component-scan>
@@ -43,11 +37,15 @@
         <!-- authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter -->
         <property name="filterChainDefinitions">
             <value>
-                /static/**=anon
-                /index.html=anon
+                /static/** = anon
+                /image/** = anon
+
                 /=anon
-                /demo/**=anon
+                /index.html = anon
+                /index_websocketClient.html = anon
                 /login.html=anon
+
+                /demo/**=anon
                 /shiroDemo/login = anon
                 /shiroDemo/logoutContl = anon
                 /shiroDemo/logout = logout
@@ -55,8 +53,15 @@
 
                 /API/**=anon
                 /app/*.html=anon
-                /web/**=anon
 
+                /web/login = anon
+                /web/autoLogin = anon
+                /web/logout_shiro = logout
+                /web/** = anon
+
+                /app/** = anon
+
+                /websocket = anon
                 /**=authc
             </value>
         </property>

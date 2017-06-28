@@ -17,7 +17,7 @@ import java.util.Map;
 @RequestMapping("/API/demo/monitor")
 public class ReportDemoController {
 
-    @RequestMapping(method = RequestMethod.GET, value = {"/report"})
+    @RequestMapping(method = RequestMethod.GET, value = {"report"})
     @ResponseBody
     public Map<String, Object> report(HttpServletRequest request, HttpServletResponse response) {
         final String pram = request.getParameter("pram");
@@ -27,7 +27,7 @@ public class ReportDemoController {
         }};
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = {"/report"})
+    @RequestMapping(method = RequestMethod.POST, value = {"report"})
     @ResponseBody
     public Map<String, Object> report_post(HttpServletRequest request, HttpServletResponse response) {
         final String pram = request.getParameter("pram");

@@ -2,6 +2,7 @@ package com.wosai.bright.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "SYS_USER")
 public class SysUser {
@@ -17,7 +18,7 @@ public class SysUser {
     private String password;
 
     @Column(name = "TYPE")
-    private String type;
+    private Short type;
 
     @Column(name = "NAME")
     private String name;
@@ -31,14 +32,32 @@ public class SysUser {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "STATS")
-    private Short stats;
+    @Column(name = "STATUS")
+    private Short status;
 
     @Column(name = "CREATE_TIME")
     private Date createTime;
 
-    @Column(name = "EXPRIE_TIME")
-    private Date exprieTime;
+    @Column(name = "EXPIRE_TIME")
+    private Date expireTime;
+
+    @Column(name = "PLATFORM")
+    private String platform;
+
+    @Column(name = "PHOTO")
+    private String photo;
+
+
+    @Transient
+    private List<SysMenu> menuList;
+
+    public List<SysMenu> getMenuList() {
+        return menuList;
+    }
+
+    public void setMenuList(List<SysMenu> menuList) {
+        this.menuList = menuList;
+    }
 
     /**
      * @return ID
@@ -85,14 +104,14 @@ public class SysUser {
     /**
      * @return TYPE
      */
-    public String getType() {
+    public Short getType() {
         return type;
     }
 
     /**
      * @param type
      */
-    public void setType(String type) {
+    public void setType(Short type) {
         this.type = type;
     }
 
@@ -153,17 +172,17 @@ public class SysUser {
     }
 
     /**
-     * @return STATS
+     * @return status
      */
-    public Short getStats() {
-        return stats;
+    public Short getStatus() {
+        return status;
     }
 
     /**
-     * @param stats
+     * @param status
      */
-    public void setStats(Short stats) {
-        this.stats = stats;
+    public void setStatus(Short status) {
+        this.status = status;
     }
 
     /**
@@ -180,17 +199,27 @@ public class SysUser {
         this.createTime = createTime;
     }
 
-    /**
-     * @return EXPRIE_TIME
-     */
-    public Date getExprieTime() {
-        return exprieTime;
+    public String getPhoto() {
+        return photo;
     }
 
-    /**
-     * @param exprieTime
-     */
-    public void setExprieTime(Date exprieTime) {
-        this.exprieTime = exprieTime;
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public Date getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
     }
 }

@@ -2,3 +2,4 @@
 /.idea
 /classes
 *.class
+/src/main/webapp/WEB-INF/classes

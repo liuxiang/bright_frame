@@ -30,6 +30,9 @@ public class SysMenu {
     @Column(name = "ORDER_NUM")
     private Short orderNum;
 
+    @Transient
+    private Short status;
+
     /**
      * @return ID
      */
@@ -140,5 +143,13 @@ public class SysMenu {
      */
     public void setOrderNum(Short orderNum) {
         this.orderNum = orderNum;
+    }
+
+    public Short getStatus() {
+        return status;
+    }
+
+    public void setStatus(Short status) {
+        this.status = status;
     }
 }

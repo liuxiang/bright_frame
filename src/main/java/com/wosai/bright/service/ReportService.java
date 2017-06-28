@@ -12,6 +12,9 @@ public interface ReportService extends IService<Device> {
      * @param device_name
      * @param device_ip
      * @param device_info
+     * @param ucode
      */
-    void report(String device_name, String device_ip,String device_info);
+    void report(String device_name, String device_ip, String device_info, String ucode);
+
+    void saveOffLineDeviceWarning();
 }

@@ -15,6 +15,9 @@ public class SysUserMenu {
     @Column(name = "MENU_ID")
     private Short menuId;
 
+    @Column(name = "STATUS")
+    private Short status;
+
     /**
      * @return ID
      */
@@ -55,5 +58,13 @@ public class SysUserMenu {
      */
     public void setMenuId(Short menuId) {
         this.menuId = menuId;
+    }
+
+    public Short getStatus() {
+        return status;
+    }
+
+    public void setStatus(Short status) {
+        this.status = status;
     }
 }

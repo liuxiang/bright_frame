@@ -11,5 +11,7 @@
     <result column="TARGET_VALUE" property="targetValue" jdbcType="VARCHAR" />
     <result column="UPPER_LIMIT" property="upperLimit" jdbcType="DECIMAL" />
     <result column="LOWER_LIMIT" property="lowerLimit" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="EXPIRE_TIME" property="expireTime" jdbcType="TIMESTAMP" />
   </resultMap>
 </mapper>

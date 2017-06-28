@@ -40,6 +40,12 @@ public class DeviceWarning {
     @Column(name = "CREATE_TIME")
     private Date createTime;
 
+    @Column(name = "UPDATE_TIME")
+    private Date updateTime;
+
+    @Column(name = "WARNING_SUM")
+    private Short warningSum;
+
     /**
      * @return ID
      */
@@ -193,4 +199,21 @@ public class DeviceWarning {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Short getWarningSum() {
+        return warningSum;
+    }
+
+    public void setWarningSum(Short warningSum) {
+        this.warningSum = warningSum;
+    }
+
 }

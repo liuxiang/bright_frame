@@ -15,6 +15,7 @@
 	<context:component-scan base-package="com.wosai.bright.controller"/>
 	<context:component-scan base-package="com.wosai.bright.controller_web"/>
 	<context:component-scan base-package="com.wosai.bright.controller_api"/>
+	<context:component-scan base-package="com.wosai.bright.controller_app"/>
 
 	<!--RequestMappingHandlerAdapter-->
 	<!-- 默认的注解映射的支持，org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping -->

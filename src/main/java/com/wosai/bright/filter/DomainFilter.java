@@ -26,9 +26,11 @@ public class DomainFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletResponse response = (HttpServletResponse) res;
 		response.setHeader("Access-Control-Allow-Origin", AccessControlAllowOrigin);
+//		response.setHeader("Access-Control-Allow-Origin", "http://localhost:63342"); // 配合Access-Control-Allow-Credentials使用
 		response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, PATCH");
 		// response.setHeader("Access-Control-Max-Age", "3600");//缓存时间
-		response.setHeader("Access-Control-Allow-Headers", "x-requested-with,token,client_version,server_version");
+		response.setHeader("Access-Control-Allow-Headers", "x-requested-with,token,client-version,server-version");
+//		response.setHeader("Access-Control-Allow-Credentials","true"); //是否支持cookie跨域
 		chain.doFilter(req, res);
 	}
 

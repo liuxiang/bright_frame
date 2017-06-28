@@ -2,6 +2,7 @@ package com.wosai.bright.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "DEVICE")
 public class Device {
@@ -30,6 +31,26 @@ public class Device {
 
     @Column(name = "CREATE_TIME")
     private Date createTime;
+
+    @Column(name = "EXPIRE_TIME")
+    private Date expireTime;
+
+    @Column(name = "UCODE")
+    private String ucode;
+
+    @Transient
+    private String menuName;
+
+    @Transient
+    List<DeviceProperty> devicePropertyList;
+
+    public List<DeviceProperty> getDevicePropertyList() {
+        return devicePropertyList;
+    }
+
+    public void setDevicePropertyList(List<DeviceProperty> devicePropertyList) {
+        this.devicePropertyList = devicePropertyList;
+    }
 
     /**
      * @return ID
@@ -141,5 +162,29 @@ public class Device {
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
+
+    public Date getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public String getUcode() {
+        return ucode;
+    }
+
+    public void setUcode(String ucode) {
+        this.ucode = ucode;
     }
 }

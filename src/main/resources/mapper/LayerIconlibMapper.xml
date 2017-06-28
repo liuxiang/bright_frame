@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wosai.bright.mapper.LayerIconlibMapper" >
+  <resultMap id="BaseResultMap" type="com.wosai.bright.model.LayerIconlib" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CLASS_ID" property="classId" jdbcType="DECIMAL" />
+    <result column="ICON_SRC" property="iconSrc" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>

@@ -14,4 +14,18 @@
     <result column="FREQUENCY" property="frequency" jdbcType="DECIMAL" />
     <result column="ISACCUM" property="isaccum" jdbcType="DECIMAL" />
   </resultMap>
+
+  <select id="getRule" resultMap="BaseResultMap">
+    select r.*
+    from device_warning_rule r
+    <where>
+      1 = 1
+      <if test="modelCode != null">
+        AND r.model_code = #{modelCode}
+      </if>
+      <if test="key != null">
+        AND r.model_property_key = #{key}
+      </if>
+    </where>
+  </select>
 </mapper>

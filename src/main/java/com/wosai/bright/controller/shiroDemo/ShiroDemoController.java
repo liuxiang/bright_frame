@@ -42,13 +42,13 @@ public class ShiroDemoController {
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             subject.login(token);// 触发 UserRealm.java - doGetAuthenticationInfo
         } catch (UnknownAccountException e) {
-            r.put("code", 1);
+            r.put("code", 1);// 账号或密码不正确
         } catch (IncorrectCredentialsException e) {
-            r.put("code", 2);
+            r.put("code", 2);// 账号或密码不正确
         } catch (LockedAccountException e) {
-            r.put("code", 3);
+            r.put("code", 3);// 账号已被锁定,请联系管理员
         } catch (AuthenticationException e) {
-            r.put("code", 4);
+            r.put("code", 4);// 账户验证失败
         }
         r.put("code", 0);
 
@@ -89,7 +89,7 @@ public class ShiroDemoController {
         return "redirect:/login.html";
     }
 
-    @RequestMapping("/testAnnotation/method_1")
+    @RequestMapping("testAnnotation/method_1")
     @RequiresPermissions("Authority:method_1")
     public void testAnnotation2(HttpServletRequest request, HttpServletResponse response) {
 
@@ -115,7 +115,7 @@ public class ShiroDemoController {
         }
     }
 
-    @RequestMapping("/testAnnotation/method_2")
+    @RequestMapping("testAnnotation/method_2")
     @RequiresPermissions("Authority:method_2")
     public void testAnnotation(HttpServletRequest request, HttpServletResponse response) {
 

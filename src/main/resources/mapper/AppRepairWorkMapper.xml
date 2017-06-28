@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wosai.bright.mapper.AppRepairWorkMapper">
+    <resultMap id="BaseResultMap" type="com.wosai.bright.model.AppRepairWork">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" property="id" jdbcType="DECIMAL"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="DEVICE_ID" property="deviceId" jdbcType="DECIMAL"/>
+        <result column="SPONSOR_USER_ID" property="sponsorUserId" jdbcType="DECIMAL"/>
+        <result column="HANDLE_USER_ID" property="handleUserId" jdbcType="DECIMAL"/>
+        <result column="SOLVE_USER_ID" property="solveUserId" jdbcType="DECIMAL"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="IMG1" property="img1" jdbcType="VARCHAR"/>
+        <result column="IMG2" property="img2" jdbcType="VARCHAR"/>
+        <result column="IMG3" property="img3" jdbcType="VARCHAR"/>
+        <result column="IMG4" property="img4" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="DECIMAL"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="EXPIRE_TIME" property="expireTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap id="MyBaseResultMap" type="map">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" property="id" jdbcType="DECIMAL"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="DEVICE_ID" property="deviceId" jdbcType="DECIMAL"/>
+        <result column="SPONSOR_USER_ID" property="sponsorUserId" jdbcType="DECIMAL"/>
+        <result column="HANDLE_USER_ID" property="handleUserId" jdbcType="DECIMAL"/>
+        <result column="SOLVE_USER_ID" property="solveUserId" jdbcType="DECIMAL"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="IMG1" property="img1" jdbcType="VARCHAR"/>
+        <result column="IMG2" property="img2" jdbcType="VARCHAR"/>
+        <result column="IMG3" property="img3" jdbcType="VARCHAR"/>
+        <result column="IMG4" property="img4" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="DECIMAL"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="EXPIRE_TIME" property="expireTime" jdbcType="TIMESTAMP"/>
+
+        <result column="sponsor_user_name" property="sponsorUserName" jdbcType="TIMESTAMP"/>
+        <result column="sponsor_user_mobile" property="sponsorUserMobile" jdbcType="TIMESTAMP"/>
+        <result column="handle_user_name" property="handleUserName" jdbcType="TIMESTAMP"/>
+        <result column="handle_user_mobile" property="handleUserMobile" jdbcType="TIMESTAMP"/>
+        <result column="solve_user_name" property="solveUserName" jdbcType="TIMESTAMP"/>
+        <result column="solve_user_mobile" property="solveUserMobile" jdbcType="TIMESTAMP"/>
+
+        <result column="device_name" property="deviceName" jdbcType="TIMESTAMP"/>
+        <result column="model_code" property="modelCode" jdbcType="TIMESTAMP"/>
+        <result column="menu_id" property="menuId" jdbcType="TIMESTAMP"/>
+
+    </resultMap>
+
+    <select id="selectRepairWork" resultMap="MyBaseResultMap">
+        select rw.*
+        ,u1.NAME sponsor_user_name,u1.mobile sponsor_user_mobile
+        ,u2.NAME handle_user_name,u2.mobile handle_user_mobile
+        ,u3.NAME solve_user_name,u3.mobile solve_user_mobile
+        ,d.name device_name,d.model_code,d.menu_id
+        from app_repair_work rw,SYS_USER u1,SYS_USER u2,SYS_USER u3,device d
+        <where>
+            rw.sponsor_user_id = u1.ID(+)
+            and rw.handle_user_id = u2.ID(+)
+            and rw.solve_user_id= u3.ID(+)
+            and rw.device_id = d.id(+)
+            <if test="id != null and id != ''">
+                and rw.id = #{id}
+            </if>
+            <if test="userId != null and userId != ''">
+                and (rw.sponsor_user_id = #{userId} or rw.handle_user_id = #{userId} or rw.solve_user_id = #{userId})
+            </if>
+            <if test="code != null and code != ''">
+                and rw.code = #{code}
+            </if>
+            <if test="status != null">
+                and rw.status = #{status}
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+                and rw.deviceId = #{deviceId}
+            </if>
+            <if test="deviceName != null and deviceName != ''">
+                and d.name like CONCAT(CONCAT('%', #{deviceName}), '%')
+            </if>
+            <if test="modelCode != null and modelCode != ''">
+                and d.model_code = #{modelCode}
+            </if>
+            <if test="menuId != null and menuId != ''">
+                and d.menu_id = #{menuId}
+            </if>
+            <if test="status != null and status != ''">
+                and rw.status = #{status}
+            </if>
+            <if test="sponsorUserId != null and sponsorUserId != ''">
+                and rw.sponsorUserId = #{sponsorUserId}
+            </if>
+            <if test="sponsorUserName != null and sponsorUserName != ''">
+                and u1.NAME like CONCAT(CONCAT('%', #{sponsorUserName}), '%')
+            </if>
+            <if test="handleUserId != null and handleUserId != ''">
+                and rw.handleUserId = #{handleUserId}
+            </if>
+            <if test="solveUserId != null and solveUserId != ''">
+                and rw.solveUserId = #{solveUserId}
+            </if>
+            <if test="beginTime != null">
+                AND rw.create_time <![CDATA[>=]]> to_date(#{beginTime},'yyyy-MM-dd')
+            </if>
+            <if test="endTime != null">
+                AND rw.create_time <![CDATA[<=]]> to_date(#{endTime},'yyyy-MM-dd')+1
+            </if>
+        </where>
+        ORDER BY rw.id DESC
+    </select>
+</mapper>

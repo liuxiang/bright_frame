@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wosai.bright.mapper.AppTokenMapper" >
+  <resultMap id="BaseResultMap" type="com.wosai.bright.model.AppToken" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="USER_ID" property="userId" jdbcType="DECIMAL" />
+    <result column="TOKEN" property="token" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="EXPIRE_TIME" property="expireTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="findUser" resultMap="BaseResultMap">
+    select u.*
+    from app_user u
+    <where>
+      1 = 1
+      <if test="userName != null">
+        and u.name like CONCAT(CONCAT('%', #{userName}), '%')
+      </if>
+      <if test="type != null">
+        AND u.type = #{type}
+      </if>
+      <if test="mobile != null">
+        AND u.mobile like CONCAT(CONCAT('%', #{mobile}), '%')
+      </if>
+      AND u.expire_time is NULL
+      ORDER BY u.create_time DESC
+    </where>
+  </select>
+
+  <select id="getUser" resultMap="BaseResultMap">
+    select u.*
+    from app_user u
+    <where>
+      1 = 1
+      <if test="_parameter != null">
+        and u.id = #{_parameter}
+      </if>
+      AND u.expire_time is NULL
+    </where>
+  </select>
+
+</mapper>

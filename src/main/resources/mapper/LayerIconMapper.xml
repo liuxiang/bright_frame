@@ -7,12 +7,15 @@
     -->
     <id column="ID" property="id" jdbcType="DECIMAL" />
     <result column="LAYER_ID" property="layerId" jdbcType="DECIMAL" />
-    <result column="POSITION_X" property="positionX" jdbcType="DECIMAL" />
-    <result column="POSITION_Y" property="positionY" jdbcType="DECIMAL" />
+    <result column="POSITION_X" property="positionX" jdbcType="VARCHAR" />
+    <result column="POSITION_Y" property="positionY" jdbcType="VARCHAR" />
     <result column="WIDTH" property="width" jdbcType="DECIMAL" />
     <result column="HEIGHT" property="height" jdbcType="DECIMAL" />
     <result column="DEVICE_ID" property="deviceId" jdbcType="DECIMAL" />
     <result column="DEVICE_PROPERTY_KEY" property="devicePropertyKey" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="ICON_SRC" property="iconSrc" jdbcType="VARCHAR" />
+    <result column="FUNCTION_TYPE" property="functionType" jdbcType="DECIMAL" />
+    <result column="EXPIRE_TIME" property="expireTime" jdbcType="TIMESTAMP" />
   </resultMap>
 </mapper>

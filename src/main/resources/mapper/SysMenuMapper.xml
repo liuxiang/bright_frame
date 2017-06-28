@@ -14,4 +14,50 @@
     <result column="ICON" property="icon" jdbcType="VARCHAR" />
     <result column="ORDER_NUM" property="orderNum" jdbcType="DECIMAL" />
   </resultMap>
+
+  <select id="selectByUserMenuModel" resultMap="BaseResultMap">
+    select m.id,parent_id,name,url,perms,type,icon,order_num ,um.status
+      from sys_user_menu um,sys_menu m
+    <where>
+      um.menu_id = m.id
+      <if test="userId != null">
+        and um.user_id = #{userId}
+      </if>
+    </where>
+  </select>
+
+  <select id="findUserMainMenuList" resultMap="BaseResultMap">
+    select m.*
+    from sys_user_menu um , sys_menu m
+    <where>
+      um.menu_id = m.id
+      <if test="userId != null">
+        and um.user_id = #{userId}
+      </if>
+      AND m.type = 1
+      AND m.parent_id = 0
+    </where>
+  </select>
+
+  <select id="findsecondaryMenuList" resultMap="BaseResultMap">
+    select m.*
+    from sys_menu m
+    <where>
+      1 = 1
+      AND m.type = 2
+      ORDER BY m.parent_id ASC , m.id ASC
+    </where>
+  </select>
+
+  <select id="findSysMenu" resultMap="BaseResultMap">
+    select m.* , um.status
+    from sys_user_menu um , sys_menu m
+    <where>
+      um.menu_id = m.id
+      <if test="userId != null">
+        and um.user_id = #{userId}
+      </if>
+    </where>
+  </select>
+
 </mapper>

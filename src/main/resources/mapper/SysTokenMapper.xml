@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wosai.bright.mapper.SysTokenMapper" >
+  <resultMap id="BaseResultMap" type="com.wosai.bright.model.SysToken" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="USER_ID" property="userId" jdbcType="DECIMAL" />
+    <result column="TOKEN" property="token" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="EXPIRE_TIME" property="expireTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="getToken" resultType="SysToken">
+    select t.*
+    from sys_token t
+    <where>
+      1 = 1
+      <if test="_parameter != null">
+        and t.token = #{_parameter}
+      </if>
+        and t.expire_time > sysdate
+    </where>
+  </select>
+
+  <select id="getUser" resultType="SysUser">
+    select u.*
+    from sys_token t , sys_user u
+    <where>
+      1 = 1
+      AND t.user_id = u.id
+      <if test="_parameter != null">
+        and t.token = #{_parameter}
+      </if>
+      and t.expire_time > sysdate
+    </where>
+  </select>
+</mapper>

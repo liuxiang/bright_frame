@@ -12,4 +12,41 @@
     <result column="REMARK" property="remark" jdbcType="VARCHAR" />
     <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
+
+  <resultMap id="MyBaseResultMap" type="map" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="DEVICE_ID" property="deviceId" jdbcType="DECIMAL" />
+    <result column="KEY" property="key" jdbcType="VARCHAR" />
+    <result column="VALUE" property="value" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findDevicePropertyLogList" resultMap="MyBaseResultMap">
+    select l.* , d.name
+    from device_property_log l , device d
+    <where>
+      1 = 1
+      AND l.device_id = d.id
+      <if test="deviceName != null">
+        and d.NAME like CONCAT(CONCAT('%', #{deviceName}), '%')
+      </if>
+      <if test="key != null">
+        AND l.KEY like CONCAT(CONCAT('%', #{key}), '%')
+      </if>
+      <if test="beginDate != null">
+        and l.update_time <![CDATA[>=]]> to_date(#{beginDate},'yyyy-MM-dd')
+      </if>
+      <if test="endDate != null">
+        and l.update_time <![CDATA[<=]]> to_date(#{endDate},'yyyy-MM-dd')
+      </if>
+      AND d.expire_time is NULL
+      ORDER BY l.update_time DESC
+    </where>
+  </select>
+
 </mapper>

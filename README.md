@@ -79,6 +79,14 @@ private Integer id;
 </bean>
 ```
 
+# maven打包
+- 下载,安装`maven` http://maven.apache.org/download.cgi
+- 配置环境变量`path` F:\Tool\Maven\apache-maven-3.3.9\bin
+- 依赖环境变量`JAVA_HOME` C:\Program Files\Java\jdk1.8.0_91
+- 测试`mvn -v`
+- 打包`mvn package`
+- war包部署测试(可选)`target/bright.war`
+
 # 框架借鉴
 - [`ThinkGem / JeeSite`](https://git.oschina.net/thinkgem/jeesite)
 - [` 人人开源 / renren-security`](https://git.oschina.net/babaio/renren-security)
@@ -92,6 +100,15 @@ private Integer id;
     - [baichengzhou/SpringMVC-Mybatis-Shiro-redis-0.2](https://github.com/baichengzhou/SpringMVC-Mybatis-Shiro-redis-0.2)
     
 # 查阅
+- MyBatis Mapper相关
+    - [MyBatis相关工具](http://www.mybatis.tk/)
+    - [如何使用通用Mapper](http://git.oschina.net/free/Mapper2/blob/master/wiki/mapper/2.Use.md)
+    - [使用Mapper专用的MyBatis Generator插件](http://git.oschina.net/free/Mapper2/blob/master/wiki/mapper/5.UseMBG.md)
+
+- MyBatis PageHelper相关
+    - [PageHelper 使用文档](https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/HowToUse.md)
+    - [PageHelper更新日志](https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/Changelog.md)
+    
 - MyBatis Generator相关
     - [MyBatis Geneator详解 abel533 / Mybatis_Utils](http://git.oschina.net/free/Mybatis_Utils/blob/master/MybatisGeneator/MybatisGeneator.md)
     - [使用Mapper专用的MyBatis Generator插件](http://git.oschina.net/free/Mapper/blob/master/wiki/mapper3/7.UseMBG.md)
@@ -115,7 +132,7 @@ private Integer id;
     - [doc/【java脚手架搭建】注解 spring-context-annotation.xml.md](https://github.com/liuxiang/bright_frame/tree/master/doc)
 
 - 问题处理
-    - [doc/【java脚手架搭建】问题处理.md]()
+    - [doc/【java脚手架搭建】常见问题.md]()
     
 # 作者信息
 - 作者博客：http://liuxiang.github.io

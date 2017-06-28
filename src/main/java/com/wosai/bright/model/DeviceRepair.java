@@ -13,8 +13,8 @@ public class DeviceRepair {
     @Column(name = "DEVICE_ID")
     private Short deviceId;
 
-    @Column(name = "USERI_ID")
-    private Short useriId;
+    @Column(name = "USER_ID")
+    private Short userId;
 
     @Column(name = "STATUS")
     private Short status;
@@ -24,6 +24,57 @@ public class DeviceRepair {
 
     @Column(name = "CREATE_TIME")
     private Date createTime;
+
+    @Transient
+    private String deviceName;
+    @Transient
+    private String modelCode;
+    @Transient
+    private String position;
+    @Transient
+    private String userName;
+    @Transient
+    private String menuName;
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
+
+    public String getModelCode() {
+        return modelCode;
+    }
+
+    public void setModelCode(String modelCode) {
+        this.modelCode = modelCode;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
 
     /**
      * @return ID
@@ -54,17 +105,17 @@ public class DeviceRepair {
     }
 
     /**
-     * @return USERI_ID
+     * @return USER_ID
      */
-    public Short getUseriId() {
-        return useriId;
+    public Short getUserId() {
+        return userId;
     }
 
     /**
-     * @param useriId
+     * @param userId
      */
-    public void setUseriId(Short useriId) {
-        this.useriId = useriId;
+    public void setUserId(Short userId) {
+        this.userId = userId;
     }
 
     /**

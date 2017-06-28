@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wosai.bright.mapper.AppDailyInspectMapper">
+    <resultMap id="BaseResultMap" type="com.wosai.bright.model.AppDailyInspect">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" property="id" jdbcType="DECIMAL"/>
+        <result column="MENU_ID" property="menuId" jdbcType="DECIMAL"/>
+        <result column="DEVICE_ID" property="deviceId" jdbcType="DECIMAL"/>
+        <result column="FAULT_CODE" property="faultCode" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap id="MyBaseResultMap" type="map">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" property="id" jdbcType="DECIMAL"/>
+        <result column="MODEL_CODE" property="modelCode" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="POSITION" property="position" jdbcType="VARCHAR"/>
+        <result column="CAMERA_DEVICE_ID" property="cameraDeviceId" jdbcType="DECIMAL"/>
+        <result column="IP" property="ip" jdbcType="VARCHAR"/>
+        <result column="MENU_ID" property="menuId" jdbcType="DECIMAL"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="EXPIRE_TIME" property="expireTime" jdbcType="TIMESTAMP"/>
+        <result column="UCODE" property="ucode" jdbcType="VARCHAR"/>
+
+        <!--<id column="ID" property="id" jdbcType="DECIMAL"/>-->
+        <!--<result column="MENU_ID" property="menuId" jdbcType="DECIMAL"/>-->
+        <result column="DEVICE_ID" property="deviceId" jdbcType="DECIMAL"/>
+        <result column="FAULT_CODE" property="faultCode" jdbcType="VARCHAR"/>
+        <result column="faultName" property="faultName" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+
+        <result column="adi_create_time" property="adiCreateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <select id="selectDeviceDailyInspect" resultMap="MyBaseResultMap">
+        select d.*,adi.fault_code,adif.name faultName,adi.remark,adi.create_time adi_create_time
+        FROM device d
+        left join app_daily_inspect adi on d.id = adi.DEVICE_ID
+        left join app_daily_inspect_fault adif on adi.FAULT_CODE = adif.code
+        <!--<if test="date != null and date != ''">-->
+        <!--and (to_char(adi.CREATE_TIME, 'yyyy-mm-dd') = #{date})-->
+        <!--</if>-->
+        <where>
+            d.EXPIRE_TIME IS NULL
+            <if test="menuId != null and menuId != ''">
+                and d.MENU_ID = #{menuId}
+            </if>
+            <if test="date != null and date != ''">
+                and(to_char(adi.CREATE_TIME,'yyyy-mm-dd') = #{date} OR adi.CREATE_TIME is null)
+            </if>
+            <if test="deviceName != null and deviceName != ''">
+                and d.name like CONCAT(CONCAT('%', #{deviceName}), '%')
+            </if>
+            <if test="modelCode != null and modelCode != ''">
+                and d.model_code = #{modelCode}
+            </if>
+            <if test="beginTime != null">
+                AND adi.adi_create_time <![CDATA[>=]]> to_date(#{beginTime},'yyyy-MM-dd')
+            </if>
+            <if test="endTime != null">
+                AND adi.adi_create_time <![CDATA[<=]]> to_date(#{endTime},'yyyy-MM-dd')+1
+            </if>
+        </where>
+        order by adi.id desc nulls last
+    </select>
+</mapper>

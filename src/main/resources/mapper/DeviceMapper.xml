@@ -1,17 +1,89 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wosai.bright.mapper.DeviceMapper" >
-  <resultMap id="BaseResultMap" type="com.wosai.bright.model.Device" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="ID" property="id" jdbcType="DECIMAL" />
-    <result column="MODEL_CODE" property="modelCode" jdbcType="VARCHAR" />
-    <result column="NAME" property="name" jdbcType="VARCHAR" />
-    <result column="POSITION" property="position" jdbcType="VARCHAR" />
-    <result column="CAMERA_DEVICE_ID" property="cameraDeviceId" jdbcType="DECIMAL" />
-    <result column="IP" property="ip" jdbcType="VARCHAR" />
-    <result column="MENU_ID" property="menuId" jdbcType="DECIMAL" />
-    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
-  </resultMap>
+<mapper namespace="com.wosai.bright.mapper.DeviceMapper">
+    <resultMap id="BaseResultMap" type="com.wosai.bright.model.Device">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="ID" property="id" jdbcType="DECIMAL"/>
+        <result column="MODEL_CODE" property="modelCode" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="POSITION" property="position" jdbcType="VARCHAR"/>
+        <result column="CAMERA_DEVICE_ID" property="cameraDeviceId" jdbcType="DECIMAL"/>
+        <result column="IP" property="ip" jdbcType="VARCHAR"/>
+        <result column="MENU_ID" property="menuId" jdbcType="DECIMAL"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="EXPIRE_TIME" property="expireTime" jdbcType="TIMESTAMP"/>
+        <result column="UCODE" property="ucode" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findDevice" resultMap="BaseResultMap">
+        select d.* , m.name AS menuName
+        from device d LEFT JOIN sys_menu m ON d.menu_id = m.id
+        <where>
+            1 = 1
+            <if test="id != null">
+                and d.id = #{id}
+            </if>
+            <if test="deviceName != null">
+                and d.NAME like CONCAT(CONCAT('%', #{deviceName}), '%')
+            </if>
+            <if test="modelCode != null">
+                AND d.model_code like CONCAT(CONCAT('%', #{modelCode}), '%')
+            </if>
+            <if test="ip != null">
+                AND d.ip like CONCAT(CONCAT('%', #{ip}), '%')
+            </if>
+            <if test="menuId != null">
+                AND d.menu_id = #{menuId}
+            </if>
+            <if test="ucode != null">
+                AND d.ucode like CONCAT(CONCAT('%', #{ucode}), '%')
+            </if>
+            AND d.expire_time is NULL
+            ORDER BY d.create_time DESC
+        </where>
+    </select>
+
+    <select id="findDeviceModelCode" resultType="String">
+        select DISTINCT d.model_code
+        from device d
+        <where>
+            1 = 1
+            AND d.expire_time is NULL
+        </where>
+    </select>
+
+    <select id="getDevice" resultType="Device">
+        select d.*
+        from device d
+        <where>
+            <if test="_parameter">
+                d.id = #{_parameter}
+            </if>
+        </where>
+    </select>
+
+    <select id="getDeviceByUcode" resultType="Device">
+        select d.*
+        from device d
+        <where>
+            <if test="_parameter">
+                d.ucode = #{_parameter}
+            </if>
+            AND d.expire_time is NULL
+        </where>
+    </select>
+
+    <select id="findOffLineDeviceId" resultMap="BaseResultMap">
+        select d.id , d.menu_id from device d , device_warning_rule r ,device_property p
+        <where>
+            1 = 1
+            AND d.model_code = r.model_code
+            AND d.id = p.device_id
+            AND ROUND(TO_NUMBER(sysdate - p.update_time) * 24 * 60 * 60) > ( 3 * r.frequency )
+            GROUP BY d.id , d.menu_id
+        </where>
+    </select>
+
 </mapper>

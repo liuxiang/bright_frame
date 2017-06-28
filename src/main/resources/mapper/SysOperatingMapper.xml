@@ -9,4 +9,5 @@
     <result column="CODE" property="code" jdbcType="VARCHAR" />
     <result column="REMARK" property="remark" jdbcType="VARCHAR" />
   </resultMap>
+
 </mapper>

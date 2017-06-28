@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wosai.bright.mapper.DeviceWarningLeverMapper" >
+  <resultMap id="BaseResultMap" type="com.wosai.bright.model.DeviceWarningLever" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="MENU_ID" property="menuId" jdbcType="DECIMAL" />
+    <result column="LEVER" property="lever" jdbcType="DECIMAL" />
+  </resultMap>
+
+  <select id="getLevel" resultMap="BaseResultMap">
+    select l.*
+    from DEVICE_WARNING_LEVER l
+    <where>
+      <if test="_parameter">
+          l.menu_id = #{_parameter}
+      </if>
+
+    </where>
+  </select>
+
+</mapper>
